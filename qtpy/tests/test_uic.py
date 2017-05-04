@@ -73,6 +73,21 @@ def test_load_ui_custom_auto(tmpdir):
     assert isinstance(ui.pushButton, QtWidgets.QPushButton)
     assert isinstance(ui.comboBox, _QComboBoxSubclass)
 
+def test_load_ui_custom_c_auto(tmpdir):
+    """
+    Test that we can load a .ui file with custom widgets without having to
+    explicitly specify a dictionary of custom widgets, even in the case of
+    PySide.
+    """
+
+    app = get_qapp()
+
+    with enabled_qcombobox_subclass(tmpdir):
+        from qcombobox_subclass import _QComboBoxSubclass
+        ui = loadUi(os.path.join(os.path.dirname(__file__), 'test_custom_c.ui'))
+
+    assert isinstance(ui.pushButton, QtWidgets.QPushButton)
+    assert isinstance(ui.comboBox, _QComboBoxSubclass)
 
 def test_load_full_uic():
     """Test that we load the full uic objects for PyQt5 and PyQt4."""
