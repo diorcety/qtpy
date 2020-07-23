@@ -104,7 +104,7 @@ PYSIDE2_API = ['pyside2']
 binding_specified = QT_API in os.environ
 
 # Setting a default value for QT_API
-os.environ.setdefault(QT_API, 'pyqt5')
+os.environ.setdefault(QT_API, 'pyside2')
 
 API = os.environ[QT_API].lower()
 initial_api = API
